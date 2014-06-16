@@ -91,13 +91,13 @@ struct omap4_ldo_abb_trim_data {
 
 #define CONFIG_OMAP4430_OVERCLOCK
 
-#define OMAP4430_VDD_MPU_OPP25_UV		 990000 //  200 Mhz
-#define OMAP4430_VDD_MPU_OPP50_UV		1005000 //  300 Mhz
-#define OMAP4430_VDD_MPU_OPP100_UV                1185000 //  600 Mhz
-#define OMAP4430_VDD_MPU_OPPTURBO_UV                1310000 //  800 Mhz
-#define OMAP4430_VDD_MPU_OPPNITRO_UV                1370000 // 1008 Mhz
-#define OMAP4430_VDD_MPU_OPPNITROSB_UV                1380000 // 1200 Mhz
-#define OMAP4430_VDD_MPU_OPPNITROSB2_UV                1386000 // 1350 Mhz
+#define OMAP4430_VDD_MPU_OPP25_UV		 950000 //  200 Mhz
+#define OMAP4430_VDD_MPU_OPP50_UV		975000 //  300 Mhz
+#define OMAP4430_VDD_MPU_OPP100_UV                1050000 //  600 Mhz
+#define OMAP4430_VDD_MPU_OPPTURBO_UV                1100000 //  800 Mhz
+#define OMAP4430_VDD_MPU_OPPNITRO_UV                1150000 // 1008 Mhz
+#define OMAP4430_VDD_MPU_OPPNITROSB_UV                1275000 // 1200 Mhz
+#define OMAP4430_VDD_MPU_OPPNITROSB2_UV                1370000 // 1350 Mhz
 #define OMAP4430_VDD_MPU_OPPNITROSB4_UV         1398000 // 1400 Mhz (Extra)
 
 
