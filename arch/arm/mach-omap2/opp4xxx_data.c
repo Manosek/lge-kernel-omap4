@@ -98,7 +98,7 @@ struct omap4_ldo_abb_trim_data {
 #define OMAP4430_VDD_MPU_OPPNITRO_UV            1150000 // 1008 Mhz
 #define OMAP4430_VDD_MPU_OPPNITROSB_UV          1275000 // 1200 Mhz
 #define OMAP4430_VDD_MPU_OPPNITROSB2_UV         1370000 // 1350 Mhz
-#define OMAP4430_VDD_MPU_OPPNITROSB4_UV         1398000 // 1400 Mhz (Extra)
+#define OMAP4430_VDD_MPU_OPPNITROSB4_UV         1398000 // 1398 Mhz
 
 
 struct omap_volt_data omap443x_vdd_mpu_volt_data[] = {
@@ -123,7 +123,6 @@ struct omap_volt_data omap443x_vdd_iva_volt_data[] = {
 	VOLT_DATA_DEFINE(OMAP4430_VDD_IVA_OPP100_UV, 0, OMAP44XX_CONTROL_FUSE_IVA_OPP100, 0xf9, 0x16, OMAP_ABB_NOMINAL_OPP),
 	VOLT_DATA_DEFINE(OMAP4430_VDD_IVA_OPPTURBO_UV, 0, OMAP44XX_CONTROL_FUSE_IVA_OPPTURBO, 0xfa, 0x23, OMAP_ABB_NOMINAL_OPP),
 	VOLT_DATA_DEFINE(OMAP4430_VDD_IVA_OPPNITRO_UV, 0, OMAP44XX_CONTROL_FUSE_IVA_OPPNITRO, 0xfa, 0x23, OMAP_ABB_FAST_OPP),
-
 	VOLT_DATA_DEFINE(0, 0, 0, 0, 0, 0),
 };
 
@@ -149,17 +148,13 @@ struct omap_volt_data omap443x_vdd_core_volt_data[] = {
 
 /* OMAP 4430 MPU Core VDD dependency table */
 static struct omap_vdd_dep_volt omap443x_vdd_mpu_core_dep_data[] = {
-
 	{.main_vdd_volt = OMAP4430_VDD_MPU_OPP25_UV, .dep_vdd_volt = OMAP4430_VDD_CORE_OPP50_UV},
-
 	{.main_vdd_volt = OMAP4430_VDD_MPU_OPP50_UV, .dep_vdd_volt = OMAP4430_VDD_CORE_OPP50_UV},
 	{.main_vdd_volt = OMAP4430_VDD_MPU_OPP100_UV, .dep_vdd_volt = OMAP4430_VDD_CORE_OPP100_UV},
 	{.main_vdd_volt = OMAP4430_VDD_MPU_OPPTURBO_UV, .dep_vdd_volt = OMAP4430_VDD_CORE_OPP100_UV},
 	{.main_vdd_volt = OMAP4430_VDD_MPU_OPPNITRO_UV, .dep_vdd_volt = OMAP4430_VDD_CORE_OPP100_UV},
 	{.main_vdd_volt = OMAP4430_VDD_MPU_OPPNITROSB_UV, .dep_vdd_volt = OMAP4430_VDD_CORE_OPP100_UV},
-
 	{.main_vdd_volt = OMAP4430_VDD_MPU_OPPNITROSB2_UV, .dep_vdd_volt = OMAP4430_VDD_CORE_OPP100_UV},
-
 };
 
 struct omap_vdd_dep_info omap443x_vddmpu_dep_info[] = {
@@ -223,7 +218,7 @@ static struct omap_opp_def __initdata omap443x_opp_def_list[] = {
 	/* SGX OPP2 - OPP100 */
 	OPP_INITIALIZER("gpu", "dpll_per_m7x2_ck", "core", true, 307200000, OMAP4430_VDD_CORE_OPP100_UV),
 	/* SGX OPP3 - OPPOV */
-    	OPP_INITIALIZER("gpu", "dpll_per_m7x2_ck", "core", false, 384000000, OMAP4430_VDD_CORE_OPP100_UV),
+    	OPP_INITIALIZER("gpu", "dpll_per_m7x2_ck", "core", true, 384000000, OMAP4430_VDD_CORE_OPP100_UV),
 	/* FDIF OPP1 - OPP25 */
 	OPP_INITIALIZER("fdif", "fdif_fck", "core", true, 32000000, OMAP4430_VDD_CORE_OPP50_UV),
 	/* FDIF OPP2 - OPP50 */
