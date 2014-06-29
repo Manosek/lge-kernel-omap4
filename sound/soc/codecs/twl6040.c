@@ -87,6 +87,15 @@
 #define TWL6040_EP_VOL_MASK	0x1E
 #define TWL6040_EP_VOL_SHIFT	1
 
+struct sound_control {
+  int default_hp_value;
+  struct snd_soc_codec *codec;
+};
+
+static struct sound_control soundcontrol;
+
+void soundcontrol_hp_boost(int new_val);
+
 //                                       
 #define MAIN_MIC_BIAS_CONTROL  //                   
 #ifdef MAIN_MIC_BIAS_CONTROL
@@ -554,6 +563,21 @@ static void twl6040_init_vio_regs(struct snd_soc_codec *codec)
 		twl6040_write(codec, reg, cache[reg]);
 	}
 }
+
+/*
+ * Writes a new value to the gain registry to boost the HP volume
+ */
+void soundcontrol_hp_boost(int new_val)
+{
+	int default_value = soundcontrol.default_hp_value;
+	int boosted_value = default_value + new_val;
+
+	twl6040_write(soundcontrol.codec, TWL6040_REG_HSGAIN, boosted_value);
+
+	pr_info("Sound Control new Headphones Gain value %d\n", 
+		twl6040_reg_read(soundcontrol.codec->control_data, TWL6040_REG_HSGAIN));
+}
+
 
 static void twl6040_init_vdd_regs(struct snd_soc_codec *codec)
 {
@@ -2762,6 +2786,8 @@ static int twl6040_probe(struct snd_soc_codec *codec)
 	struct twl6040_jack_data *jack;
 	int ret = 0;
 
+	soundcontrol.codec = codec;
+
 	priv = kzalloc(sizeof(struct twl6040_data), GFP_KERNEL);
 	if (priv == NULL)
 		return -ENOMEM;
@@ -2918,6 +2944,8 @@ static int twl6040_probe(struct snd_soc_codec *codec)
 	snd_soc_add_controls(codec, twl6040_snd_controls,
 				ARRAY_SIZE(twl6040_snd_controls));
 	twl6040_add_widgets(codec);
+
+	soundcontrol.default_hp_value = twl6040_reg_read(codec->control_data, TWL6040_REG_HSGAIN);
 
 	return 0;
 
